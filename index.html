@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>课程预约系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 时间表 -->
+      <div class="timeline">
+        <div v-for="timeSlot in timeSlots" :key="timeSlot.time" class="time-slot" @dragover.prevent @drop="handleDrop($event, timeSlot)">
+          <div class="time-label">{{ timeSlot.display }}</div>
+          <div class="booking-area">
+            <div v-for="user in timeSlot.users" class="user-card" draggable="true" @dragstart="handleDragStart($event, user)">
+              {{ user.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 用户列表 -->
+      <div class="user-list">
+        <div v-for="user in users" class="user-card" draggable="true" @dragstart="handleDragStart($event, user)" @click="editUser(user)">
+          {{ user.name }}
+        </div>
+      </div>
+
+      <!-- 编辑模态框 -->
+      <div v-if="showEditModal" class="modal-overlay">
+        <div class="modal-content">
+          <input v-model="editingUser.name" type="text" placeholder="输入会员姓名" @keyup.enter="saveEdit" />
+          <div class="modal-actions">
+            <button @click="deleteUser">删除</button>
+            <button @click="saveEdit">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 添加会员按钮 -->
+      <button class="add-button" @click="addUser">+ 添加会员</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
