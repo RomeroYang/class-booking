@@ -70,6 +70,9 @@ new Vue({
       this.users.push(newUser);
       this.editUser(newUser);
     },
+    isBooked(user) {
+      return this.timeSlots.some((slot) => slot.users.some((u) => u.id === user.id));
+    },
     saveData() {
       localStorage.setItem("users", JSON.stringify(this.users));
       localStorage.setItem("timeSlots", JSON.stringify(this.timeSlots));

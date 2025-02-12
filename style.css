@@ -5,13 +5,14 @@ body {
 
 .timeline {
   padding: 1rem;
+  padding-bottom: 60px;
 }
 
 .time-slot {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
 }
@@ -24,11 +25,11 @@ body {
 
 .booking-area {
   flex: 1;
-  min-height: 40px;
+  min-height: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 8px;
+  padding: 4px;
   background: #f5f5f5;
   border-radius: 4px;
 }
@@ -53,6 +54,14 @@ body {
   cursor: move;
   user-select: none;
   transition: transform 0.1s;
+}
+
+.user-card.booked {
+  background: #4caf50; /* 绿色 */
+}
+
+.user-card.unbooked {
+  background: #2196f3; /* 默认蓝色 */
 }
 
 .user-card:active {
@@ -112,9 +121,6 @@ body {
 
 /* 添加按钮 */
 .add-button {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
   padding: 12px 24px;
   background: #2196f3;
   color: white;
@@ -122,5 +128,4 @@ body {
   border-radius: 24px;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }

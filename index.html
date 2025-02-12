@@ -23,9 +23,19 @@
 
       <!-- 用户列表 -->
       <div class="user-list">
-        <div v-for="user in users" class="user-card" draggable="true" @dragstart="handleDragStart($event, user)" @click="editUser(user)">
+        <div
+          v-for="user in users"
+          class="user-card"
+          :class="{ booked: isBooked(user), unbooked: !isBooked(user) }"
+          draggable="true"
+          @dragstart="handleDragStart($event, user)"
+          @click="editUser(user)"
+        >
           {{ user.name }}
         </div>
+
+        <!-- 添加会员按钮 -->
+        <button class="add-button" @click="addUser">+ 添加会员</button>
       </div>
 
       <!-- 编辑模态框 -->
@@ -38,9 +48,6 @@
           </div>
         </div>
       </div>
-
-      <!-- 添加会员按钮 -->
-      <button class="add-button" @click="addUser">+ 添加会员</button>
     </div>
 
     <script src="app.js"></script>
